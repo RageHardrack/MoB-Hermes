@@ -11,43 +11,43 @@ const corsOptions = {
 
 // Creating the sync to DB
 const db = require("./src/models");
-const Role = db.role;
+// const Role = db.role;
 
 // For Development. It will drop and re-create the DB
-db.sequelize.sync({ force: true }).then(() => {
-	console.log("Drop and Resync the DB");
-	initial();
-});
+// db.sequelize.sync({ force: true }).then(() => {
+// 	console.log("Drop and Resync the DB");
+// 	initial();
+// });
 
 // For Production
-// db.sequelize.sync()
+db.sequelize.sync();
 
-function initial() {
-	Role.create({
-		id: 1,
-		name: "administrador",
-	});
+// function initial() {
+// 	Role.create({
+// 		id: 1,
+// 		name: "administrador",
+// 	});
 
-	Role.create({
-		id: 2,
-		name: "operador",
-	});
+// 	Role.create({
+// 		id: 2,
+// 		name: "operador",
+// 	});
 
-	Role.create({
-		id: 3,
-		name: "auditor",
-	});
+// 	Role.create({
+// 		id: 3,
+// 		name: "auditor",
+// 	});
 
-	Role.create({
-		id: 4,
-		name: "cliente",
-	});
+// 	Role.create({
+// 		id: 4,
+// 		name: "cliente",
+// 	});
 
-	Role.create({
-		id: 5,
-		name: "mobiker",
-	});
-}
+// 	Role.create({
+// 		id: 5,
+// 		name: "mobiker",
+// 	});
+// }
 
 // Middlewares
 app.use(cors(corsOptions));
@@ -56,7 +56,7 @@ app.use(express.urlencoded({ extended: true })); // parse requests of content-ty
 
 // Routes
 app.get("/", (req, res) => {
-	res.json({ message: "Bienvenidos! Soy Hermes" });
+	res.json({ message: "¡Bienvenidos! Soy Hermes" });
 });
 
 require("./src/routes/auth.routes")(app);

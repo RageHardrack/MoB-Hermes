@@ -14,6 +14,9 @@ db.sequelize = sequelize;
 
 db.user = require("./user.model")(sequelize, Sequelize);
 db.role = require("./role.model")(sequelize, Sequelize);
+db.pedido = require("./pedido.model")(sequelize, Sequelize);
+db.mobiker = require("./mobiker.model")(sequelize, Sequelize);
+db.cliente = require("./cliente.model")(sequelize, Sequelize);
 
 // Associations
 db.role.belongsToMany(db.user, {

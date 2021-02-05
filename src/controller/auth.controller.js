@@ -10,7 +10,7 @@ const bcrypt = require("bcryptjs");
 
 module.exports = {
 	// Register
-	signup = (req, res) => {
+	signup: (req, res) => {
 		// Save the User to Database
 		User.create({
 			fullName: req.body.fullName,
@@ -42,7 +42,7 @@ module.exports = {
 	},
 
 	// Login
-	signin = (req, res) => {
+	signin: (req, res) => {
 		User.findOne({
 			where: {
 				username: req.body.username,
@@ -72,8 +72,10 @@ module.exports = {
 					}
 					res.status(200).send({
 						id: user.id,
+						fullName: user.fullName,
 						username: user.username,
 						email: user.email,
+						empresa: user.empresa,
 						roles: authorities,
 						accessToken: token,
 					});
@@ -82,7 +84,5 @@ module.exports = {
 			.catch((err) => {
 				res.status(500).send({ message: err.message });
 			});
-	}
-}
-
-
+	},
+};

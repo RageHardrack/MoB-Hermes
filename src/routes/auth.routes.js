@@ -10,12 +10,12 @@ module.exports = function (app) {
 		next();
 	});
 	app.post(
-		"/api/registro",
+		"/registro",
 		[
 			verifySignUp.checkDuplicateUsernameOrEmail,
 			verifySignUp.checkRolesExisted,
 		],
 		controller.signup
 	);
-	app.post("/api/login", controller.signin);
+	app.post("/login", controller.signin);
 };

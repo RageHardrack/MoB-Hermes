@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 
+const router = require("./routes/index.routes");
+
 // Initializations
 const app = express();
 
@@ -18,14 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // parse requests of content-type - application/x-www-form-urlencoded
 
 // Routes
-app.get("/", (req, res) => {
-	res.json({ bienvenida: "¡Bienvenidos! Soy Hermes" });
-});
-
-// Auth Route
-require("./routes/auth.routes")(app);
-// User Route
-require("./routes/user.routes")(app);
+app.use("/hermes", router);
 
 // Set PORT and start the server
 const PORT = process.env.PORT || 8080;

@@ -1,15 +1,17 @@
-exports.allAccess = (req, res) => {
+module.exports = {
+	allAccess = (req, res) => {
 	res.status(200).send("Public Content.");
-};
+},
 
-exports.userBoard = (req, res) => {
+	userBoard = (req, res) => {
 	res.status(200).send("Cliente Content.");
-};
+},
 
-exports.adminBoard = (req, res) => {
+	adminBoard = (req, res) => {
 	res.status(200).send("Admin Content.");
-};
+},
 
-exports.operadorBoard = (req, res) => {
+	operadorBoard = (req, res) => {
 	res.status(200).send("Operador Content.");
-};
+}
+}

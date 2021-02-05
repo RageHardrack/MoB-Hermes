@@ -1,13 +1,13 @@
 const jwt = require("jsonwebtoken");
 const config = require("../config/auth.config");
-db = require("../models");
+db = require("../models/index");
 const User = db.user;
 
 verifyToken = (req, res, next) => {
 	let token = req.headers["x-access-token"];
 	if (!token) {
 		return res.status(403).send({
-			message: "No token provided!",
+			message: "¡Falta el token!",
 		});
 	}
 	jwt.verify(token, config.secret, (err, decoded) => {

@@ -2,17 +2,24 @@
 	"name": "Hermes",
 	"version": "1.0.0",
 	"description": "API REST para conectar el cliente Mail On Bike con la Base de Datos",
-	"main": "server.js",
+	"main": "src/server.js",
 	"scripts": {
-		"start": "node server.js",
-		"dev": "nodemon server.js"
+		"start": "node src/server.js",
+		"dev": "nodemon src/server.js"
 	},
-	"keywords": [],
+	"keywords": [
+		"node.js",
+		"jwt",
+		"authentication",
+		"express",
+		"mysql"
+	],
 	"author": "Daniel Colmenares",
 	"license": "ISC",
 	"dependencies": {
 		"bcryptjs": "^2.4.3",
 		"cors": "^2.8.5",
+		"dotenv": "^8.2.0",
 		"express": "^4.17.1",
 		"jsonwebtoken": "^8.5.1",
 		"morgan": "^1.10.0",

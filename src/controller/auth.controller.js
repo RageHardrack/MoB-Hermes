@@ -16,7 +16,7 @@ module.exports = {
 			fullName: req.body.fullName,
 			username: req.body.username,
 			email: req.body.email,
-			password: bcrypt.hashSync(req.body.password, process.env.AUTH_ROUNDS),
+			password: bcrypt.hashSync(req.body.password, 10),
 			empresa: req.body.empresa,
 		})
 			.then((user) => {
@@ -62,13 +62,15 @@ module.exports = {
 						message: "¡Contraseña inválida!",
 					});
 				}
-				let token = jwt.sign({ id: user.id }, config.secret, {
-					expiresIn: 86400, // 24 hours
-				});
+				let token = jwt.sign(
+					{ id: user.id },
+					config.secret,
+					{ expiresIn: config.expires } // 24 hours
+				);
 				let authorities = [];
 				user.getRoles().then((roles) => {
 					for (let i = 0; i < roles.length; i++) {
-						authorities.push("ROLE_" + roles[i].name.toUpperCase());
+						authorities.push(roles[i].name.toUpperCase());
 					}
 					res.status(200).send({
 						id: user.id,

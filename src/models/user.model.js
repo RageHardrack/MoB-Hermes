@@ -5,11 +5,6 @@ module.exports = (sequelize, Sequelize) => {
 			fullName: {
 				type: Sequelize.STRING,
 				allowNull: false,
-				validate: {
-					isAlpha: {
-						msg: "El nombre solo puede contener letras",
-					},
-				},
 			},
 			username: {
 				type: Sequelize.STRING,

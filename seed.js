@@ -5,7 +5,6 @@ const Role = db.role;
 const Distrito = db.distrito;
 const CodigoPostal = db.codigoPostal;
 const Rango = db.rango;
-// require("./src/models/associations");
 
 // Usuarios
 const users = [
@@ -292,20 +291,20 @@ const codigosPostales = [
 	{ codigo: "07076", distritoId: 49 },
 ];
 
-// Associations
-db.role.belongsToMany(db.user, {
-	through: "user_roles",
-	foreignKey: "roleId",
-	otherKey: "userId",
-});
-db.user.belongsToMany(db.role, {
-	through: "user_roles",
-	foreignKey: "userId",
-	otherKey: "roleId",
-});
+// // Associations
+// db.role.belongsToMany(db.user, {
+// 	through: "user_roles",
+// 	foreignKey: "roleId",
+// 	otherKey: "userId",
+// });
+// db.user.belongsToMany(db.role, {
+// 	through: "user_roles",
+// 	foreignKey: "userId",
+// 	otherKey: "roleId",
+// });
 
-db.distrito.hasMany(db.codigoPostal, { as: "Código Postal" });
-db.codigoPostal.belongsTo(db.distrito);
+// db.distrito.hasMany(db.codigoPostal, { as: "Código Postal" });
+// db.codigoPostal.belongsTo(db.distrito);
 
 db.sequelize
 	.sync({ force: true })

@@ -8,7 +8,7 @@ module.exports = (sequelize, Sequelize) => {
 			},
 		},
 		{
-			tableName: "Codigos Postales",
+			tableName: "codigos postales",
 			timestamps: false,
 		}
 	);

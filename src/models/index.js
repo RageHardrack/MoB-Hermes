@@ -17,25 +17,30 @@ db.role = require("./role.model")(sequelize, Sequelize);
 db.pedido = require("./pedido.model")(sequelize, Sequelize);
 db.mobiker = require("./mobiker.model")(sequelize, Sequelize);
 db.cliente = require("./cliente.model")(sequelize, Sequelize);
-db.distrito = require("./distrito.model")(sequelize, Sequelize);
-db.codigoPostal = require("./codigoPostal.model")(sequelize, Sequelize);
-db.rango = require("./rango.model")(sequelize, Sequelize);
+db.distrito = require("./tablas auxiliares/distrito.model")(
+	sequelize,
+	Sequelize
+);
+db.codigoPostal = require("./tablas auxiliares/codigoPostal.model")(
+	sequelize,
+	Sequelize
+);
+db.rango = require("./tablas auxiliares/rango.model")(sequelize, Sequelize);
 
 // Associations
-// require("./associations");
-// db.role.belongsToMany(db.user, {
-// 	through: "user_roles",
-// 	foreignKey: "roleId",
-// 	otherKey: "userId",
-// });
-// db.user.belongsToMany(db.role, {
-// 	through: "user_roles",
-// 	foreignKey: "userId",
-// 	otherKey: "roleId",
-// });
+db.role.belongsToMany(db.user, {
+	through: "user_roles",
+	foreignKey: "roleId",
+	otherKey: "userId",
+});
+db.user.belongsToMany(db.role, {
+	through: "user_roles",
+	foreignKey: "userId",
+	otherKey: "roleId",
+});
 
-// db.distrito.hasMany(db.codigoPostal, { as: "Código Postal" });
-// db.codigoPostal.belongsTo(db.distrito);
+db.distrito.hasMany(db.codigoPostal, { as: "Código Postal" });
+db.codigoPostal.belongsTo(db.distrito);
 
 db.ROLES = ["administrador", "operador", "auditor", "cliente", "mobiker"];
 

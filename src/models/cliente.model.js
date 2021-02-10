@@ -19,7 +19,7 @@ module.exports = (sequelize, Sequelize) => {
 				allowNull: false,
 			},
 			distrito: {
-				type: Sequelize.STRING(50),
+				type: Sequelize.STRING(25),
 				allowNull: false,
 			},
 			otroDato: {

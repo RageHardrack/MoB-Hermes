@@ -3,11 +3,11 @@ module.exports = (sequelize, Sequelize) => {
 		"users",
 		{
 			fullName: {
-				type: Sequelize.STRING,
+				type: Sequelize.STRING(25),
 				allowNull: false,
 			},
 			username: {
-				type: Sequelize.STRING,
+				type: Sequelize.STRING(15),
 				allowNull: false,
 				validate: {
 					len: {
@@ -17,7 +17,7 @@ module.exports = (sequelize, Sequelize) => {
 				},
 			},
 			email: {
-				type: Sequelize.STRING,
+				type: Sequelize.STRING(35),
 				allowNull: false,
 				validate: {
 					isEmail: {
@@ -36,7 +36,7 @@ module.exports = (sequelize, Sequelize) => {
 				},
 			},
 			empresa: {
-				type: Sequelize.STRING,
+				type: Sequelize.STRING(25),
 				allowNull: false,
 			},
 		},

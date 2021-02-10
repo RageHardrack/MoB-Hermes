@@ -1,21 +1,20 @@
 module.exports = (sequelize, Sequelize) => {
-	const Role = sequelize.define(
-		"roles",
+	const Rango = sequelize.define(
+		"rangos",
 		{
 			id: {
 				type: Sequelize.INTEGER(1),
 				primaryKey: true,
 				allowNull: false,
 			},
-			name: {
-				type: Sequelize.STRING(20),
+			rangoMoBiker: {
+				type: Sequelize.STRING(15),
 				allowNull: false,
 			},
 		},
 		{
-			tableName: "roles",
-			timestamps: false,
+			tableName: "rangos",
 		}
 	);
-	return Role;
+	return Rango;
 };

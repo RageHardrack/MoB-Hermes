@@ -291,7 +291,7 @@ const codigosPostales = [
 	{ codigo: "07076", distritoId: 49 },
 ];
 
-// // Associations
+// Associations
 // db.role.belongsToMany(db.user, {
 // 	through: "user_roles",
 // 	foreignKey: "roleId",

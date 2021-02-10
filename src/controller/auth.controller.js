@@ -20,21 +20,19 @@ module.exports = {
 			empresa: req.body.empresa,
 		})
 			.then((user) => {
-				if (req.body.roles) {
-					Role.findAll({
-						where: {
-							name: {
-								[Op.or]: req.body.roles,
-							},
+				Role.findAll({
+					where: {
+						name: {
+							[Op.or]: req.body.roles,
 						},
-					}).then((roles) => {
-						user.setRoles(roles).then(() => {
-							res.send({
-								message: "¡El usuario fue registrado satisfactoriamente!",
-							});
+					},
+				}).then((roles) => {
+					user.setRoles(roles).then(() => {
+						res.send({
+							message: "¡El usuario fue registrado satisfactoriamente!",
 						});
 					});
-				}
+				});
 			})
 			.catch((err) => {
 				res.status(500).send({ message: err.message });

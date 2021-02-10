@@ -42,6 +42,9 @@ db.user.belongsToMany(db.role, {
 db.distrito.hasMany(db.codigoPostal, { as: "Código Postal" });
 db.codigoPostal.belongsTo(db.distrito);
 
+db.distrito.hasOne(db.cliente, { foreignKey: "distritoCliente" });
+db.cliente.belongsTo(db.distrito, { foreignKey: "distritoCliente" });
+
 db.ROLES = ["administrador", "operador", "auditor", "cliente", "mobiker"];
 
 module.exports = db;

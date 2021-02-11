@@ -2,6 +2,7 @@ const db = require("./src/models/index");
 const bcrypt = require("bcryptjs");
 const User = db.user;
 const Role = db.role;
+const Mobiker = db.mobiker;
 const Distrito = db.distrito;
 const CodigoPostal = db.codigoPostal;
 const Rango = db.rango;
@@ -34,8 +35,16 @@ const users = [
 	},
 	{
 		fullName: "Anderson Vallejo",
-		username: "avellejo",
+		username: "avallejo",
 		email: "avell@dan.com",
+		password: bcrypt.hashSync("123123", 10),
+		empresa: "Mail On Bike",
+		roles: [2, 5],
+	},
+	{
+		fullName: "Angélica Moreno",
+		username: "amoreno",
+		email: "amoreno@dan.com",
 		password: bcrypt.hashSync("123123", 10),
 		empresa: "Mail On Bike",
 		roles: [2, 5],
@@ -51,6 +60,15 @@ const roles = [
 	{ id: 5, name: "mobiker" },
 ];
 
+// MoBikers
+const mobikers = [
+	{ nombres: "Daniel", apellidos: "Colmenares" },
+	{ nombres: "Alberto", apellidos: "Hernández" },
+	{ nombres: "Angélica", apellidos: "Moreno" },
+	{ nombres: "Fernando", apellidos: "Carbajal" },
+];
+
+// Rangos
 const rangos = [
 	{ id: 1, rangoMoBiker: "Pre-MoBiker" },
 	{ id: 2, rangoMoBiker: "MoBiker" },
@@ -332,6 +350,10 @@ db.sequelize
 				usuario.addRoles(roles);
 			});
 		});
+	})
+	.then(() => {
+		// Creando MoBikers
+		mobikers.forEach((mobiker) => Mobiker.create(mobiker));
 	})
 	.then(() => {
 		// Creando los Códigos Postales

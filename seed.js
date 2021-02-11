@@ -6,6 +6,11 @@ const Mobiker = db.mobiker;
 const Distrito = db.distrito;
 const CodigoPostal = db.codigoPostal;
 const Rango = db.rango;
+const Comprobante = db.comprobante;
+const Carga = db.carga;
+const Modalidad = db.modalidad;
+const FormaDePago = db.formaDePago;
+const RolCliente = db.rolCliente;
 
 // Usuarios
 const users = [
@@ -74,6 +79,53 @@ const rangos = [
 	{ id: 2, rangoMoBiker: "MoBiker" },
 	{ id: 3, rangoMoBiker: "MoBiker Pro" },
 	{ id: 4, rangoMoBiker: "MoBiker Élite" },
+];
+
+// Tipo de Comprobante
+const tipoDeComprobante = [
+	{ id: 1, tipo: "Ninguno" },
+	{ id: 2, tipo: "Factura Inc/IGV" },
+	{ id: 3, tipo: "Factura Sin/IGV" },
+	{ id: 4, tipo: "Boleta" },
+	{ id: 5, tipo: "Recibo por Honorarios" },
+];
+
+// Tipo de Carga
+const tipoDeCarga = [
+	{ id: 1, tipo: "Producto E-commerce" },
+	{ id: 2, tipo: "Producto Alimenticio" },
+	{ id: 3, tipo: "Documento/Sobre" },
+];
+
+// Modalidad
+const modalidades = [
+	{ id: 1, tipo: "Una vía" },
+	{ id: 2, tipo: "Ruteo" },
+	{ id: 3, tipo: "Express" },
+	{ id: 4, tipo: "Con Retorno" },
+];
+
+// Formas de Pago
+const formasDePago = [
+	{ id: 1, pago: "Crédito 7 Días" },
+	{ id: 2, pago: "Crédito 15 Días" },
+	{ id: 3, pago: "Crédito 30 Días" },
+	{ id: 4, pago: "Crédito 60 Días" },
+	{ id: 5, pago: "Efectivo en Destino" },
+	{ id: 6, pago: "Efectivo en Origen" },
+	{ id: 7, pago: "Transferencia" },
+	{ id: 8, pago: "Sin Cargo x Canje" },
+	{ id: 9, pago: "Sin Cargo x Compensación" },
+	{ id: 10, pago: "Sin Cargo x Cortesía" },
+	{ id: 11, pago: "Sin Cargo x Envío Propio" },
+	{ id: 12, pago: "Sin Cargo x Error MoB" },
+];
+
+// Roles de Cliente
+const rolesCliente = [
+	{ id: 1, rol: "Remitente" },
+	{ id: 2, rol: "Destinatario" },
+	{ id: 3, rol: "Monitor" },
 ];
 
 // Distritos
@@ -309,21 +361,6 @@ const codigosPostales = [
 	{ codigo: "07076", distritoId: 49 },
 ];
 
-// Associations
-// db.role.belongsToMany(db.user, {
-// 	through: "user_roles",
-// 	foreignKey: "roleId",
-// 	otherKey: "userId",
-// });
-// db.user.belongsToMany(db.role, {
-// 	through: "user_roles",
-// 	foreignKey: "userId",
-// 	otherKey: "roleId",
-// });
-
-// db.distrito.hasMany(db.codigoPostal, { as: "Código Postal" });
-// db.codigoPostal.belongsTo(db.distrito);
-
 db.sequelize
 	.sync({ force: true })
 	.then(() => {
@@ -341,6 +378,26 @@ db.sequelize
 	.then(() => {
 		// Creando los distritos
 		distritos.forEach((distrito) => Distrito.create(distrito));
+	})
+	.then(() => {
+		// Creando tabla de comprobante
+		tipoDeComprobante.forEach((comprobante) => Comprobante.create(comprobante));
+	})
+	.then(() => {
+		// Creando tabla de tipo de Carga
+		tipoDeCarga.forEach((carga) => Carga.create(carga));
+	})
+	.then(() => {
+		// Creando tabla de Modalidad
+		modalidades.forEach((modalidad) => Modalidad.create(modalidad));
+	})
+	.then(() => {
+		// Creando tabla de Forma de Pago
+		formasDePago.forEach((pago) => FormaDePago.create(pago));
+	})
+	.then(() => {
+		// Creando tabla de Roles del Cliente
+		rolesCliente.forEach((rolCliente) => RolCliente.create(rolCliente));
 	})
 	.then(() => {
 		// Creando usuarios

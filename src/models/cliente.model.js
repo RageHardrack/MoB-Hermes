@@ -20,7 +20,7 @@ module.exports = (sequelize, Sequelize) => {
 			},
 			otroDato: {
 				type: Sequelize.STRING(150),
-				allowNull: false,
+				allowNull: true,
 			},
 			facturacion: {
 				type: Sequelize.BOOLEAN,

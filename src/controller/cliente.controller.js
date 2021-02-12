@@ -49,13 +49,17 @@ module.exports = {
 			});
 
 			if (distrito && comprobante && rolDelCliente) {
-				await cliente.setDistrito(distrito);
-				await cliente.setComprobante(comprobante);
-				await cliente.setRolCliente(rolDelCliente);
-				await cliente.setTipoDeCarga(tipoDeCarga);
-				await cliente.setFormaDePago(pago);
+				try {
+					await cliente.setDistrito(distrito);
+					await cliente.setComprobante(comprobante);
+					await cliente.setRolCliente(rolDelCliente);
+					await cliente.setTipoDeCarga(tipoDeCarga);
+					await cliente.setFormaDePago(pago);
 
-				res.json({ message: "¡Se ha creado el Cliente con éxito!" });
+					res.json({ message: "¡Se ha creado el Cliente con éxito!" });
+				} catch (err) {
+					res.status(500).send({ message: err.message });
+				}
 			} else {
 				res.json({ message: "¡Error! No se ha podido crear el cliente..." });
 			}
@@ -65,9 +69,31 @@ module.exports = {
 	},
 
 	// Mostrar todos los Clientes
-	showClientes: (req, res) => {
-		Cliente.findAll().then((clientes) => {
+	showClientes: async (req, res) => {
+		try {
+			let clientes = await Cliente.findAll({
+				include: [
+					{
+						model: Distrito,
+					},
+					{
+						model: Comprobante,
+						as: "comprobante",
+					},
+					{
+						model: RolCliente,
+					},
+					{
+						model: Carga,
+					},
+					{
+						model: FormaDePago,
+					},
+				],
+			});
 			res.json(clientes);
-		});
+		} catch (err) {
+			res.status(500).send({ message: err.message });
+		}
 	},
 };

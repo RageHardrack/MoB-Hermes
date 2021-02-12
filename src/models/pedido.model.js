@@ -12,7 +12,7 @@ module.exports = (sequelize, Sequelize) => {
 			},
 			empresaRemitente: {
 				type: Sequelize.STRING,
-				allowNull: false,
+				allowNull: true,
 			},
 			direccionRemitente: {
 				type: Sequelize.STRING,
@@ -28,13 +28,9 @@ module.exports = (sequelize, Sequelize) => {
 			},
 			empresaConsignado: {
 				type: Sequelize.STRING,
-				allowNull: false,
+				allowNull: true,
 			},
 			direccionConsignado: {
-				type: Sequelize.STRING,
-				allowNull: false,
-			},
-			distritoConsignado: {
 				type: Sequelize.STRING,
 				allowNull: false,
 			},

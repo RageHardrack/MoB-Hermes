@@ -59,11 +59,40 @@ db.user.belongsToMany(db.role, {
 	otherKey: "roleId",
 });
 
+// Relaciones Auxiliares
 db.distrito.hasMany(db.codigoPostal, { as: "Código Postal" });
 db.codigoPostal.belongsTo(db.distrito);
 
+// Relaciones con la Tabla Clientes
 db.distrito.hasOne(db.cliente, { foreignKey: "distritoCliente" });
 db.cliente.belongsTo(db.distrito, { foreignKey: "distritoCliente" });
+
+db.comprobante.hasOne(db.cliente, {
+	as: "comprobante",
+	foreignKey: "tipoComprobante",
+});
+db.cliente.belongsTo(db.comprobante, {
+	as: "comprobante",
+	foreignKey: "tipoComprobante",
+});
+
+db.rolCliente.hasMany(db.cliente, {
+	foreignKey: "rolDelCliente",
+});
+db.cliente.belongsTo(db.rolCliente, {
+	foreignKey: "rolDelCliente",
+});
+
+db.carga.hasMany(db.cliente, {
+	foreignKey: "tipoCarga",
+});
+db.cliente.belongsTo(db.carga, {
+	foreignKey: "tipoCarga",
+});
+
+db.formaDePago.hasMany(db.cliente);
+db.cliente.belongsTo(db.formaDePago);
+// Fin relaciones de Clientes
 
 db.ROLES = ["administrador", "operador", "auditor", "cliente", "mobiker"];
 

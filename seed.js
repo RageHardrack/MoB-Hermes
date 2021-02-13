@@ -11,6 +11,7 @@ const Carga = db.carga;
 const Modalidad = db.modalidad;
 const FormaDePago = db.formaDePago;
 const RolCliente = db.rolCliente;
+const Envio = db.envio;
 
 // Usuarios
 const users = [
@@ -126,6 +127,14 @@ const rolesCliente = [
 	{ id: 1, rol: "Remitente" },
 	{ id: 2, rol: "Destinatario" },
 	{ id: 3, rol: "Monitor" },
+];
+
+// Tipo de Envío
+const tipoEnvio = [
+	{ id: 1, tipo: "E-Commerce" },
+	{ id: 2, tipo: "EmpresaG" },
+	{ id: 3, tipo: "Express" },
+	{ id: 4, tipo: "Juntoz" },
 ];
 
 // Distritos
@@ -398,6 +407,10 @@ db.sequelize
 	.then(() => {
 		// Creando tabla de Roles del Cliente
 		rolesCliente.forEach((rolCliente) => RolCliente.create(rolCliente));
+	})
+	.then(() => {
+		// Creando tabla de Tipo de Envío
+		tipoEnvio.forEach((envio) => Envio.create(envio));
 	})
 	.then(() => {
 		// Creando usuarios

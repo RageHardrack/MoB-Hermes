@@ -46,6 +46,7 @@ db.rolCliente = require("./tablas auxiliares/rolCliente.model")(
 	sequelize,
 	Sequelize
 );
+db.envio = require("./tablas auxiliares/envio.model")(sequelize, Sequelize);
 
 // Associations
 db.role.belongsToMany(db.user, {

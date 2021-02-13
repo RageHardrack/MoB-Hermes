@@ -22,6 +22,10 @@ module.exports = (sequelize, Sequelize) => {
 				type: Sequelize.STRING(150),
 				allowNull: true,
 			},
+			ruc: {
+				type: Sequelize.INTEGER(11),
+				allowNull: true,
+			},
 		},
 		{
 			tableName: "clientes",

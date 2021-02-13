@@ -15,6 +15,7 @@ module.exports = {
 				direccion: req.body.direccion,
 				telefono: req.body.telefono,
 				otroDato: req.body.otroDato,
+				ruc: req.body.ruc,
 			});
 
 			let distrito = await Distrito.findOne({
@@ -50,7 +51,7 @@ module.exports = {
 			if (distrito && comprobante && rolDelCliente) {
 				try {
 					await cliente.setDistrito(distrito);
-					await cliente.setComprobante(comprobante);
+					await cliente.setTipoDeComprobante(comprobante);
 					await cliente.setRolCliente(rolDelCliente);
 					await cliente.setTipoDeCarga(tipoDeCarga);
 					await cliente.setFormaDePago(pago);
@@ -77,7 +78,6 @@ module.exports = {
 					},
 					{
 						model: Comprobante,
-						as: "comprobante",
 					},
 					{
 						model: RolCliente,

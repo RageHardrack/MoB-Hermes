@@ -10,14 +10,14 @@ module.exports = (app) => {
 	});
 
 	// Ruta para crear nuevo MoBiker
-	app.post("/mobikers/crear-nuevo-mobiker", controller.crearMobiker);
+	app.post("/mobikers/crear-nuevo-mobiker", controller.storageMobiker);
 
 	// Ruta para mostrar todos los MoBikers
 	app.get("/mobikers/equipo-mobiker", controller.equipoMobiker);
 
 	// Ruta para mostrar UN MoBiker
-	app.get("/mobikers/equipo-mobiker/:id", controller.obtenerMobiker);
+	app.get("/mobikers/equipo-mobiker/:id", controller.getMobiker);
 
 	// Ruta para editar un MoBiker
-	app.put("/mobikers/equipo-mobiker/:id", controller.editarMobiker);
+	app.put("/mobikers/equipo-mobiker/:id", controller.editMobiker);
 };

@@ -22,11 +22,6 @@ module.exports = (sequelize, Sequelize) => {
 				type: Sequelize.STRING(150),
 				allowNull: true,
 			},
-			facturacion: {
-				type: Sequelize.BOOLEAN,
-				allowNull: false,
-				defaultValue: false,
-			},
 		},
 		{
 			tableName: "clientes",

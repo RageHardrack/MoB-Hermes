@@ -15,7 +15,6 @@ module.exports = {
 				direccion: req.body.direccion,
 				telefono: req.body.telefono,
 				otroDato: req.body.otroDato,
-				facturacion: req.body.facturacion,
 			});
 
 			let distrito = await Distrito.findOne({

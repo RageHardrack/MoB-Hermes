@@ -7,7 +7,7 @@ const Carga = db.carga;
 const FormaDePago = db.formaDePago;
 
 module.exports = {
-	crearCliente: async (req, res) => {
+	storageCliente: async (req, res) => {
 		try {
 			let cliente = await Cliente.create({
 				contacto: req.body.contacto,
@@ -69,7 +69,7 @@ module.exports = {
 	},
 
 	// Mostrar todos los Clientes
-	showClientes: async (req, res) => {
+	indexClientes: async (req, res) => {
 		try {
 			let clientes = await Cliente.findAll({
 				include: [

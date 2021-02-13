@@ -2,7 +2,7 @@ const db = require("../models/index");
 const Mobiker = db.mobiker;
 
 module.exports = {
-	crearMobiker: (req, res) => {
+	storageMobiker: (req, res) => {
 		Mobiker.create({
 			nombres: req.body.nombres,
 			apellidos: req.body.apellidos,
@@ -22,7 +22,7 @@ module.exports = {
 	},
 
 	// Mostrar 1 MoBiker
-	obtenerMobiker: (req, res) => {
+	getMobiker: (req, res) => {
 		Mobiker.findByPk(req.params.id).then((mobiker) => {
 			if (!mobiker) {
 				res.status(404).json({ msg: "No se ha encontrado el MoBiker" });
@@ -33,7 +33,7 @@ module.exports = {
 	},
 
 	// Editar MoBiker
-	editarMobiker: (req, res) => {
+	editMobiker: (req, res) => {
 		Mobiker.findByPk(req.params.id).then((mobiker) => {
 			if (!mobiker) {
 				res.status(404).json({ msg: "No se ha encontrado el MoBiker" });

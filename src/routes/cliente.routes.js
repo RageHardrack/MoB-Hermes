@@ -10,8 +10,8 @@ module.exports = (app) => {
 	});
 
 	// Ruta para crear nuevo Cliente
-	app.post("/clientes/crear-nuevo-cliente", controller.crearCliente);
+	app.post("/clientes/crear-nuevo-cliente", controller.storageCliente);
 
 	// Ruta para mostrar todos los Clientes
-	app.get("/clientes/tablero-clientes", controller.showClientes);
+	app.get("/clientes/tablero-clientes", controller.indexClientes);
 };

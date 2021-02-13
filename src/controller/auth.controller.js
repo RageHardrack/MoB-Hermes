@@ -11,7 +11,7 @@ const bcrypt = require("bcryptjs");
 module.exports = {
 	// Register
 	signup: (req, res) => {
-		// Save the User to Database
+		// Guardar el usuario en la Base de Datos
 		User.create({
 			fullName: req.body.fullName,
 			username: req.body.username,

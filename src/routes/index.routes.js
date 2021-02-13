@@ -20,4 +20,7 @@ require("./pedido.routes")(router);
 // Clientes Route
 require("./cliente.routes")(router);
 
+// Tablas Auxiliares
+require("./auxiliares.routes")(router);
+
 module.exports = router;

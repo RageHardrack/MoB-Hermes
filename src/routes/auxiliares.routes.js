@@ -11,4 +11,31 @@ module.exports = (app) => {
 
 	// Ruta para obtener los roles de los usuarios
 	app.get("/auxiliares/roles-usuarios", controller.sendRolesUsuarios);
+
+	// Ruta para obtener los distritos
+	app.get("/auxiliares/distritos", controller.sendDistritos);
+
+	// Ruta para obtener los tipo de carga
+	app.get("/auxiliares/tipos-de-carga", controller.sendTipoCarga);
+
+	// Ruta para obtener los tipo de comprobante
+	app.get(
+		"/auxiliares/tipos-de-comprobantes",
+		controller.sendTiposComprobantes
+	);
+
+	// Ruta para obtener los tipos de envios
+	app.get("/auxiliares/tipos-de-envios", controller.sendTipoEnvio);
+
+	// Ruta para obtener las formas de pago
+	app.get("/auxiliares/formas-de-pago", controller.sendFormaPago);
+
+	// Ruta para obtener la modalidad
+	app.get("/auxiliares/modalidad", controller.sendTipoModalidad);
+
+	// Ruta para obtener los rangos de MoBikers
+	app.get("/auxiliares/rangos-MoBiker", controller.sendRangosMoB);
+
+	// Ruta para obtener los roles de los clientes
+	app.get("/auxiliares/roles-clientes", controller.sendRolCliente);
 };

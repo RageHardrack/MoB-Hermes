@@ -43,10 +43,6 @@ module.exports = (sequelize, Sequelize) => {
 				type: Sequelize.STRING(150),
 				allowNull: false,
 			},
-			distritoConsignado: {
-				type: Sequelize.STRING(25),
-				allowNull: false,
-			},
 			telefonoConsignado: {
 				type: Sequelize.INTEGER(9),
 				allowNull: false,

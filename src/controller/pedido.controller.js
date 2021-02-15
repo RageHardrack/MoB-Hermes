@@ -1,11 +1,11 @@
 const db = require("../models/index");
 const Pedido = db.pedido;
+const Distrito = db.distrito;
 
 module.exports = {
 	storagePedido: async (req, res) => {
 		try {
 			let nuevoPedido = await Pedido.create({
-				fecha: new Date(),
 				contactoRemitente: req.body.contactoRemitente,
 				empresaRemitente: req.body.empresaRemitente,
 				direccionRemitente: req.body.direccionRemitente,
@@ -15,7 +15,6 @@ module.exports = {
 				contactoConsignado: req.body.contactoConsignado,
 				empresaConsignado: req.body.empresaConsignado,
 				direccionConsignado: req.body.direccionConsignado,
-				distritoConsignado: req.body.distritoConsignado,
 				telefonoConsignado: req.body.telefonoConsignado,
 				otroDatoConsignado: req.body.otroDatoConsignado,
 				tarifa: req.body.tarifa,
@@ -26,7 +25,23 @@ module.exports = {
 				statusFinanciero: req.body.statusFinanciero,
 			});
 
-			res.json({ message: "¡Se ha creado el Pedido con éxito!" });
+			let distritoDestino = await Distrito.findOne({
+				where: {
+					distrito: req.body.distritoConsignado,
+				},
+			});
+
+			if (distritoDestino) {
+				try {
+					await nuevoPedido.setDistrito(distritoDestino);
+
+					res.json({ message: "¡Se ha creado el Pedido con éxito!" });
+				} catch (err) {
+					res.status(500).send({ message: err.message });
+				}
+			} else {
+				res.json({ message: "¡Error! No se ha podido crear el pedido..." });
+			}
 		} catch (err) {
 			res.status(500).send({ message: err.message });
 		}
@@ -34,7 +49,13 @@ module.exports = {
 
 	// Mostrar todos los Pedidos
 	indexPedidos: async (req, res) => {
-		const pedidos = await Pedido.findAll();
+		const pedidos = await Pedido.findAll({
+			include: [
+				{
+					model: Distrito,
+				},
+			],
+		});
 
 		res.json(pedidos);
 	},

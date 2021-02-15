@@ -86,6 +86,11 @@ db.distrito.hasOne(db.mobiker);
 db.mobiker.belongsTo(db.distrito);
 // Fin relaciones de MoBikers
 
+// Relaciones de Pedidos
+db.distrito.hasOne(db.pedido);
+db.pedido.belongsTo(db.distrito);
+// Fin relaciones de Pedidos
+
 db.ROLES = ["administrador", "operador", "auditor", "cliente", "mobiker"];
 
 module.exports = db;

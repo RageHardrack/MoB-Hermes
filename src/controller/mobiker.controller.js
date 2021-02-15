@@ -60,14 +60,24 @@ module.exports = {
 	},
 
 	// Mostrar 1 MoBiker
-	getMobiker: (req, res) => {
-		Mobiker.findByPk(req.params.id).then((mobiker) => {
+	getMobiker: async (req, res) => {
+		try {
+			let mobiker = await Mobiker.findByPk(req.params.id, {
+				include: [
+					{
+						model: Distrito,
+					},
+				],
+			});
+
 			if (!mobiker) {
 				res.status(404).json({ msg: "No se ha encontrado el MoBiker" });
 			} else {
 				res.json(mobiker);
 			}
-		});
+		} catch (err) {
+			res.status(500).send({ message: err.message });
+		}
 	},
 
 	// Editar MoBiker

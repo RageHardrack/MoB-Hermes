@@ -81,6 +81,11 @@ db.formaDePago.hasMany(db.cliente);
 db.cliente.belongsTo(db.formaDePago);
 // Fin relaciones de Clientes
 
+// Relaciones de MoBikers
+db.distrito.hasOne(db.mobiker);
+db.mobiker.belongsTo(db.distrito);
+// Fin relaciones de MoBikers
+
 db.ROLES = ["administrador", "operador", "auditor", "cliente", "mobiker"];
 
 module.exports = db;

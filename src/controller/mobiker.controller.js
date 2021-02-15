@@ -1,10 +1,11 @@
 const db = require("../models/index");
 const Mobiker = db.mobiker;
+const Distrito = db.distrito;
 
 module.exports = {
 	storageMobiker: async (req, res) => {
 		try {
-			await Mobiker.create({
+			const mobiker = await Mobiker.create({
 				nombres: req.body.nombres,
 				apellidos: req.body.apellidos,
 				telefono: req.body.telefono,
@@ -13,18 +14,49 @@ module.exports = {
 				tipoDocumento: req.body.tipoDocumento,
 				numeroDocumento: req.body.numeroDocumento,
 				email: req.body.email,
+				genero: req.body.genero,
+				banco: req.body.banco,
+				tipoCuenta: req.body.tipoCuenta,
+				numeroCuentaBancaria: req.body.numeroCuentaBancaria,
+				equipo: req.body.equipo,
 			});
-			res.json({ message: "¡Se ha creado el MoBiker con éxito!" });
+
+			let distrito = await Distrito.findOne({
+				where: {
+					distrito: req.body.distrito,
+				},
+			});
+
+			if (distrito) {
+				try {
+					await mobiker.setDistrito(distrito);
+
+					res.json({ message: "¡Se ha creado el MoBiker con éxito!" });
+				} catch (err) {
+					res.status(500).send({ message: err.message });
+				}
+			} else {
+				res.json({ message: "¡Error! No se ha podido crear el mobike..." });
+			}
 		} catch (err) {
 			res.status(500).send({ message: err.message });
 		}
 	},
 
 	// Mostrar todos los MoBikers
-	equipoMobiker: (req, res) => {
-		Mobiker.findAll().then((mobikers) => {
+	equipoMobiker: async (req, res) => {
+		try {
+			let mobikers = await Mobiker.findAll({
+				include: [
+					{
+						model: Distrito,
+					},
+				],
+			});
 			res.json(mobikers);
-		});
+		} catch (err) {
+			res.status(500).send({ message: err.message });
+		}
 	},
 
 	// Mostrar 1 MoBiker

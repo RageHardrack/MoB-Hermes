@@ -23,7 +23,7 @@ module.exports = (sequelize, Sequelize) => {
 				allowNull: true,
 			},
 			ruc: {
-				type: Sequelize.INTEGER(11),
+				type: Sequelize.BIGINT(11),
 				allowNull: true,
 			},
 		},

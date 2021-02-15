@@ -10,8 +10,8 @@ module.exports = (app) => {
 	});
 
 	// Ruta para crear nuevo Pedido
-	app.post("/pedidos/crear-nuevo-pedido", controller.crearPedido);
+	app.post("/pedidos/crear-nuevo-pedido", controller.storagePedido);
 
 	// Ruta para mostrar todos los Pedidos
-	app.get("/pedidos/tablero-pedidos", controller.showPedidos);
+	app.get("/pedidos/tablero-pedidos", controller.indexPedidos);
 };

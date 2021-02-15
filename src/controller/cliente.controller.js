@@ -15,6 +15,7 @@ module.exports = {
 				direccion: req.body.direccion,
 				telefono: req.body.telefono,
 				otroDato: req.body.otroDato,
+				email: req.body.email,
 				ruc: req.body.ruc,
 			});
 

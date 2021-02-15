@@ -67,12 +67,12 @@ const roles = [
 ];
 
 // MoBikers
-const mobikers = [
-	{ nombres: "Daniel", apellidos: "Colmenares" },
-	{ nombres: "Alberto", apellidos: "Hernández" },
-	{ nombres: "Angélica", apellidos: "Moreno" },
-	{ nombres: "Fernando", apellidos: "Carbajal" },
-];
+// const mobikers = [
+// 	{ nombres: "Daniel", apellidos: "Colmenares" },
+// 	{ nombres: "Alberto", apellidos: "Hernández" },
+// 	{ nombres: "Angélica", apellidos: "Moreno" },
+// 	{ nombres: "Fernando", apellidos: "Carbajal" },
+// ];
 
 // Rangos
 const rangos = [
@@ -421,10 +421,10 @@ db.sequelize
 			});
 		});
 	})
-	.then(() => {
-		// Creando MoBikers
-		mobikers.forEach((mobiker) => Mobiker.create(mobiker));
-	})
+	// .then(() => {
+	// 	// Creando MoBikers
+	// 	mobikers.forEach((mobiker) => Mobiker.create(mobiker));
+	// })
 	.then(() => {
 		// Creando los Códigos Postales
 		codigosPostales.forEach((codigo) => CodigoPostal.create(codigo));

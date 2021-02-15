@@ -2,16 +2,22 @@ const db = require("../models/index");
 const Mobiker = db.mobiker;
 
 module.exports = {
-	storageMobiker: (req, res) => {
-		Mobiker.create({
-			nombres: req.body.nombres,
-			apellidos: req.body.apellidos,
-			distrito: req.body.distrito,
-		})
-			.then(res.json({ message: "¡Se ha creado el MoBiker con éxito!" }))
-			.catch((err) => {
-				res.status(500).send({ message: err.message });
+	storageMobiker: async (req, res) => {
+		try {
+			await Mobiker.create({
+				nombres: req.body.nombres,
+				apellidos: req.body.apellidos,
+				telefono: req.body.telefono,
+				telegram: req.body.telegram,
+				direccion: req.body.direccion,
+				tipoDocumento: req.body.tipoDocumento,
+				numeroDocumento: req.body.numeroDocumento,
+				email: req.body.email,
 			});
+			res.json({ message: "¡Se ha creado el MoBiker con éxito!" });
+		} catch (err) {
+			res.status(500).send({ message: err.message });
+		}
 	},
 
 	// Mostrar todos los MoBikers

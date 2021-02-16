@@ -19,6 +19,7 @@ module.exports = {
 				tipoCuenta: req.body.tipoCuenta,
 				numeroCuentaBancaria: req.body.numeroCuentaBancaria,
 				equipo: req.body.equipo,
+				tipoBicicleta: req.body.tipoBicicleta,
 			});
 
 			let distrito = await Distrito.findOne({

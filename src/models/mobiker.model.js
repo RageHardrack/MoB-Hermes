@@ -56,6 +56,10 @@ module.exports = (sequelize, Sequelize) => {
 				type: Sequelize.STRING(15),
 				allowNull: false,
 			},
+			tipoBicicleta: {
+				type: Sequelize.STRING(15),
+				allowNull: false,
+			},
 			biciEnvios: {
 				type: Sequelize.INTEGER(6),
 				defaultValue: 0,

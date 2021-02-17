@@ -39,7 +39,7 @@ module.exports = {
 
 			let mobiker = await Mobiker.findOne({
 				where: {
-					nombres: req.body.mobiker,
+					fullName: req.body.mobiker,
 				},
 			});
 			let tipoEnvio = await Envio.findOne({
@@ -84,7 +84,7 @@ module.exports = {
 				},
 				{
 					model: Mobiker,
-					attributes: ["nombres", "apellidos"],
+					attributes: ["fullName"],
 				},
 				{
 					model: Cliente,

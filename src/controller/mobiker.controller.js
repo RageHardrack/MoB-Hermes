@@ -22,6 +22,11 @@ module.exports = {
 				tipoBicicleta: req.body.tipoBicicleta,
 			};
 
+			let separaNombres = req.body.nombres.split(" ");
+			let separaApellidos = req.body.apellidos.split(" ");
+
+			mobiker.fullName = separaNombres[0] + " " + separaApellidos[0];
+
 			let distrito = await Distrito.findOne({
 				where: {
 					distrito: req.body.distrito,

@@ -1,11 +1,17 @@
 const db = require("../models/index");
 const Pedido = db.pedido;
 const Distrito = db.distrito;
+const Mobiker = db.mobiker;
+const Cliente = db.cliente;
+const Envio = db.envio;
+const Modalidad = db.modalidad;
+
+const Op = db.Sequelize.Op;
 
 module.exports = {
 	storagePedido: async (req, res) => {
 		try {
-			let nuevoPedido = await Pedido.create({
+			let pedido = {
 				contactoRemitente: req.body.contactoRemitente,
 				empresaRemitente: req.body.empresaRemitente,
 				direccionRemitente: req.body.direccionRemitente,
@@ -23,17 +29,39 @@ module.exports = {
 				ruido: req.body.ruido,
 				status: req.body.status,
 				statusFinanciero: req.body.statusFinanciero,
-			});
+			};
 
-			let distritoDestino = await Distrito.findOne({
+			let distritoPedido = await Distrito.findOne({
 				where: {
 					distrito: req.body.distritoConsignado,
 				},
 			});
 
-			if (distritoDestino) {
+			let mobiker = await Mobiker.findOne({
+				where: {
+					nombres: req.body.mobiker,
+				},
+			});
+			let tipoEnvio = await Envio.findOne({
+				where: {
+					tipo: req.body.tipoEnvio,
+				},
+			});
+
+			let modalidadPedido = await Modalidad.findOne({
+				where: {
+					tipo: req.body.modalidad,
+				},
+			});
+
+			if (distritoPedido && mobiker && tipoEnvio && modalidadPedido) {
 				try {
-					await nuevoPedido.setDistrito(distritoDestino);
+					let nuevoPedido = await Pedido.create(pedido);
+
+					await nuevoPedido.setDistrito(distritoPedido);
+					await nuevoPedido.setMobiker(mobiker);
+					await nuevoPedido.setTipoDeEnvio(tipoEnvio);
+					await nuevoPedido.setModalidad(modalidadPedido);
 
 					res.json({ message: "¡Se ha creado el Pedido con éxito!" });
 				} catch (err) {
@@ -53,6 +81,20 @@ module.exports = {
 			include: [
 				{
 					model: Distrito,
+				},
+				{
+					model: Mobiker,
+					attributes: ["nombres", "apellidos"],
+				},
+				{
+					model: Cliente,
+					attributes: ["contacto", "empresa"],
+				},
+				{
+					model: Envio,
+				},
+				{
+					model: Modalidad,
 				},
 			],
 		});

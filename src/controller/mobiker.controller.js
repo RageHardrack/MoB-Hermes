@@ -5,7 +5,7 @@ const Distrito = db.distrito;
 module.exports = {
 	storageMobiker: async (req, res) => {
 		try {
-			const mobiker = await Mobiker.create({
+			const mobiker = {
 				nombres: req.body.nombres,
 				apellidos: req.body.apellidos,
 				telefono: req.body.telefono,
@@ -20,7 +20,7 @@ module.exports = {
 				numeroCuentaBancaria: req.body.numeroCuentaBancaria,
 				equipo: req.body.equipo,
 				tipoBicicleta: req.body.tipoBicicleta,
-			});
+			};
 
 			let distrito = await Distrito.findOne({
 				where: {
@@ -30,7 +30,9 @@ module.exports = {
 
 			if (distrito) {
 				try {
-					await mobiker.setDistrito(distrito);
+					let nuevoMobiker = await Mobiker.create(mobiker);
+
+					await nuevoMobiker.setDistrito(distrito);
 
 					res.json({ message: "¡Se ha creado el MoBiker con éxito!" });
 				} catch (err) {

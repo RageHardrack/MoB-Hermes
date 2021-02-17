@@ -9,7 +9,7 @@ const FormaDePago = db.formaDePago;
 module.exports = {
 	storageCliente: async (req, res) => {
 		try {
-			let cliente = await Cliente.create({
+			let cliente = {
 				contacto: req.body.contacto,
 				empresa: req.body.empresa,
 				direccion: req.body.direccion,
@@ -17,7 +17,7 @@ module.exports = {
 				otroDato: req.body.otroDato,
 				email: req.body.email,
 				ruc: req.body.ruc,
-			});
+			};
 
 			let distrito = await Distrito.findOne({
 				where: {
@@ -49,13 +49,15 @@ module.exports = {
 				},
 			});
 
-			if (distrito && comprobante && rolDelCliente) {
+			if (distrito && comprobante && rolDelCliente && tipoDeCarga && pago) {
 				try {
-					await cliente.setDistrito(distrito);
-					await cliente.setTipoDeComprobante(comprobante);
-					await cliente.setRolCliente(rolDelCliente);
-					await cliente.setTipoDeCarga(tipoDeCarga);
-					await cliente.setFormaDePago(pago);
+					let nuevoCliente = await Cliente.create(cliente);
+
+					await nuevoCliente.setDistrito(distrito);
+					await nuevoCliente.setTipoDeComprobante(comprobante);
+					await nuevoCliente.setRolCliente(rolDelCliente);
+					await nuevoCliente.setTipoDeCarga(tipoDeCarga);
+					await nuevoCliente.setFormaDePago(pago);
 
 					res.json({ message: "¡Se ha creado el Cliente con éxito!" });
 				} catch (err) {

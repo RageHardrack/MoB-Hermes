@@ -89,6 +89,18 @@ db.mobiker.belongsTo(db.distrito);
 // Relaciones de Pedidos
 db.distrito.hasOne(db.pedido);
 db.pedido.belongsTo(db.distrito);
+
+db.mobiker.hasOne(db.pedido);
+db.pedido.belongsTo(db.mobiker);
+
+db.cliente.hasOne(db.pedido);
+db.pedido.belongsTo(db.cliente);
+
+db.modalidad.hasOne(db.pedido);
+db.pedido.belongsTo(db.modalidad);
+
+db.envio.hasOne(db.pedido);
+db.pedido.belongsTo(db.envio);
 // Fin relaciones de Pedidos
 
 db.ROLES = ["administrador", "operador", "auditor", "cliente", "mobiker"];

@@ -2,7 +2,6 @@ const db = require("./src/models/index");
 const bcrypt = require("bcryptjs");
 const User = db.user;
 const Role = db.role;
-// const Mobiker = db.mobiker;
 const Distrito = db.distrito;
 const CodigoPostal = db.codigoPostal;
 const Rango = db.rango;
@@ -65,14 +64,6 @@ const roles = [
 	{ id: 4, name: "cliente" },
 	{ id: 5, name: "mobiker" },
 ];
-
-// MoBikers
-// const mobikers = [
-// 	{ nombres: "Daniel", apellidos: "Colmenares" },
-// 	{ nombres: "Alberto", apellidos: "Hernández" },
-// 	{ nombres: "Angélica", apellidos: "Moreno" },
-// 	{ nombres: "Fernando", apellidos: "Carbajal" },
-// ];
 
 // Rangos
 const rangos = [
@@ -421,10 +412,6 @@ db.sequelize
 			});
 		});
 	})
-	// .then(() => {
-	// 	// Creando MoBikers
-	// 	mobikers.forEach((mobiker) => Mobiker.create(mobiker));
-	// })
 	.then(() => {
 		// Creando los Códigos Postales
 		codigosPostales.forEach((codigo) => CodigoPostal.create(codigo));

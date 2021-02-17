@@ -20,6 +20,8 @@ module.exports = {
 				numeroCuentaBancaria: req.body.numeroCuentaBancaria,
 				equipo: req.body.equipo,
 				tipoBicicleta: req.body.tipoBicicleta,
+				fechaNacimiento: req.body.fechaNacimiento,
+				fechaIngreso: req.body.fechaIngreso,
 			};
 
 			let separaNombres = req.body.nombres.split(" ");

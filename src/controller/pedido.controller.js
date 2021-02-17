@@ -6,8 +6,6 @@ const Cliente = db.cliente;
 const Envio = db.envio;
 const Modalidad = db.modalidad;
 
-const Op = db.Sequelize.Op;
-
 module.exports = {
 	storagePedido: async (req, res) => {
 		try {

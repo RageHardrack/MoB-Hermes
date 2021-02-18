@@ -6,6 +6,8 @@ const RolCliente = db.rolCliente;
 const Carga = db.carga;
 const FormaDePago = db.formaDePago;
 
+const Op = db.Sequelize.Op;
+
 module.exports = {
 	storageCliente: async (req, res) => {
 		try {
@@ -94,6 +96,43 @@ module.exports = {
 				],
 			});
 			res.json(clientes);
+		} catch (err) {
+			res.status(500).send({ message: err.message });
+		}
+	},
+
+	// Buscar cliente por nombre o empresa
+	searchCliente: async (req, res) => {
+		try {
+			const query = req.query.contacto;
+
+			let cliente = await Cliente.findAll({
+				where: {
+					[Op.or]: [
+						{ contacto: { [Op.like]: `%${query}%` } },
+						{ empresa: { [Op.like]: `%${query}%` } },
+					],
+				},
+				include: [
+					{
+						model: Distrito,
+					},
+					{
+						model: Comprobante,
+					},
+					{
+						model: RolCliente,
+					},
+					{
+						model: Carga,
+					},
+					{
+						model: FormaDePago,
+					},
+				],
+			});
+
+			res.json(cliente);
 		} catch (err) {
 			res.status(500).send({ message: err.message });
 		}

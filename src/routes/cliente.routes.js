@@ -14,4 +14,7 @@ module.exports = (app) => {
 
 	// Ruta para mostrar todos los Clientes
 	app.get("/clientes/tablero-clientes", controller.indexClientes);
+
+	// Ruta para buscar clientes por contacto o empresa
+	app.get("/clientes", controller.searchCliente);
 };

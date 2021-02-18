@@ -55,6 +55,18 @@ module.exports = (sequelize, Sequelize) => {
 				type: Sequelize.FLOAT(3),
 				allowNull: false,
 			},
+			comision: {
+				type: Sequelize.FLOAT(3),
+				allowNull: false,
+			},
+			tipoCarga: {
+				type: Sequelize.STRING(25),
+				allowNull: false,
+			},
+			formaPago: {
+				type: Sequelize.STRING(30),
+				allowNull: false,
+			},
 			distancia: {
 				type: Sequelize.FLOAT(5),
 				allowNull: false,

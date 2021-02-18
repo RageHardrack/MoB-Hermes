@@ -38,4 +38,7 @@ module.exports = (app) => {
 
 	// Ruta para obtener los roles de los clientes
 	app.get("/auxiliares/roles-clientes", controller.sendRolCliente);
+
+	// Ruta para obtener las Entidades Bancarias
+	app.get("/auxiliares/entidades-financieras", controller.sendBancos);
 };

@@ -11,6 +11,7 @@ const Modalidad = db.modalidad;
 const FormaDePago = db.formaDePago;
 const RolCliente = db.rolCliente;
 const Envio = db.envio;
+const Bancos = db.bancos;
 
 // Usuarios
 const users = [
@@ -79,7 +80,6 @@ const tipoDeComprobante = [
 	{ id: 2, tipo: "Factura Inc/IGV" },
 	{ id: 3, tipo: "Factura Sin/IGV" },
 	{ id: 4, tipo: "Boleta" },
-	{ id: 5, tipo: "Recibo por Honorarios" },
 ];
 
 // Tipo de Carga
@@ -87,14 +87,16 @@ const tipoDeCarga = [
 	{ id: 1, tipo: "Producto E-commerce" },
 	{ id: 2, tipo: "Producto Alimenticio" },
 	{ id: 3, tipo: "Documento/Sobre" },
+	{ id: 4, tipo: "Dispositivo Electrónico" },
+	{ id: 5, tipo: "Obsequio" },
+	{ id: 6, tipo: "Paquete" },
 ];
 
 // Modalidad
 const modalidades = [
 	{ id: 1, tipo: "Una vía" },
 	{ id: 2, tipo: "Ruteo" },
-	{ id: 3, tipo: "Express" },
-	{ id: 4, tipo: "Con Retorno" },
+	{ id: 3, tipo: "Con Retorno" },
 ];
 
 // Formas de Pago
@@ -117,7 +119,6 @@ const formasDePago = [
 const rolesCliente = [
 	{ id: 1, rol: "Remitente" },
 	{ id: 2, rol: "Destinatario" },
-	{ id: 3, rol: "Monitor" },
 ];
 
 // Tipo de Envío
@@ -125,7 +126,27 @@ const tipoEnvio = [
 	{ id: 1, tipo: "E-Commerce" },
 	{ id: 2, tipo: "EmpresaG" },
 	{ id: 3, tipo: "Express" },
-	{ id: 4, tipo: "Juntoz" },
+	{ id: 4, tipo: "Persona" },
+];
+
+const entidadesFinancieras = [
+	{ id: 1, banco: "Banco de Comercio" },
+	{ id: 2, banco: "Banco de Crédito del Perú (BCP)" },
+	{ id: 3, banco: "Banco Interamericano de Finanzas (BanBif)" },
+	{ id: 4, banco: "Banco Pichincha" },
+	{ id: 5, banco: "BBVA Continental" },
+	{ id: 6, banco: "Citibank Perú" },
+	{ id: 7, banco: "Interbank" },
+	{ id: 8, banco: "MiBank" },
+	{ id: 9, banco: "Scotiabank Perú" },
+	{ id: 10, banco: "Banco GNB Perú" },
+	{ id: 11, banco: "Banco Falabella" },
+	{ id: 12, banco: "Banco Ripley" },
+	{ id: 13, banco: "Banco Santander Perú" },
+	{ id: 14, banco: "Banco Azteca" },
+	{ id: 15, banco: "Banco Cencosud" },
+	{ id: 16, banco: "ICBC PERU BANK" },
+	{ id: 17, banco: "Sin Banco" },
 ];
 
 // Distritos
@@ -402,6 +423,10 @@ db.sequelize
 	.then(() => {
 		// Creando tabla de Tipo de Envío
 		tipoEnvio.forEach((envio) => Envio.create(envio));
+	})
+	.then(() => {
+		// Creando Tabla Entidades financieras
+		entidadesFinancieras.forEach((banco) => Bancos.create(banco));
 	})
 	.then(() => {
 		// Creando usuarios

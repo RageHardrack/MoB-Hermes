@@ -10,6 +10,7 @@ module.exports = {
 	storagePedido: async (req, res) => {
 		try {
 			let pedido = {
+				fecha: req.body.fecha,
 				contactoRemitente: req.body.contactoRemitente,
 				empresaRemitente: req.body.empresaRemitente,
 				direccionRemitente: req.body.direccionRemitente,

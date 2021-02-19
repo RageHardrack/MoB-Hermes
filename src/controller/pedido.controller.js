@@ -5,6 +5,7 @@ const Mobiker = db.mobiker;
 const Cliente = db.cliente;
 const Envio = db.envio;
 const Modalidad = db.modalidad;
+const Status = db.status;
 
 module.exports = {
 	storagePedido: async (req, res) => {
@@ -29,7 +30,6 @@ module.exports = {
 				distancia: req.body.distancia,
 				CO2Ahorrado: req.body.CO2Ahorrado,
 				ruido: req.body.ruido,
-				status: req.body.status,
 				statusFinanciero: req.body.statusFinanciero,
 			};
 
@@ -56,7 +56,19 @@ module.exports = {
 				},
 			});
 
-			if (distritoPedido && mobiker && tipoEnvio && modalidadPedido) {
+			let estadoPedido = await Status.findOne({
+				where: {
+					codigo: req.body.status,
+				},
+			});
+
+			if (
+				distritoPedido &&
+				mobiker &&
+				tipoEnvio &&
+				modalidadPedido &&
+				estadoPedido
+			) {
 				try {
 					let nuevoPedido = await Pedido.create(pedido);
 
@@ -64,6 +76,7 @@ module.exports = {
 					await nuevoPedido.setMobiker(mobiker);
 					await nuevoPedido.setTipoDeEnvio(tipoEnvio);
 					await nuevoPedido.setModalidad(modalidadPedido);
+					await nuevoPedido.setStatus(estadoPedido);
 
 					res.json({ message: "¡Se ha creado el Pedido con éxito!" });
 				} catch (err) {
@@ -97,6 +110,9 @@ module.exports = {
 				},
 				{
 					model: Modalidad,
+				},
+				{
+					model: Status,
 				},
 			],
 		});

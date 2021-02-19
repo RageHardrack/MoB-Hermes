@@ -12,6 +12,7 @@ const FormaDePago = db.formaDePago;
 const RolCliente = db.rolCliente;
 const Envio = db.envio;
 const Bancos = db.bancos;
+const Status = db.status;
 
 // Usuarios
 const users = [
@@ -147,6 +148,40 @@ const entidadesFinancieras = [
 	{ id: 15, banco: "Banco Cencosud" },
 	{ id: 16, banco: "ICBC PERU BANK" },
 	{ id: 17, banco: "Sin Banco" },
+];
+
+const estadosPedido = [
+	{ id: 1, codigo: 100, status: "Pedido programado" },
+	{ id: 2, codigo: 200, status: "Pedido asignado / Por recoger" },
+	{ id: 3, codigo: 300, status: "Pedido en tránsito" },
+	{ id: 4, codigo: 401, status: "Entregado: al destinatario" },
+	{ id: 5, codigo: 402, status: "Entregado: a un familiar" },
+	{ id: 6, codigo: 403, status: "Entregado: al vigilante / portero" },
+	{ id: 7, codigo: 501, status: "Falso flete: cliente ausente" },
+	{ id: 8, codigo: 502, status: "Falso flete: destinatario ausente" },
+	{ id: 9, codigo: 503, status: "Falso flete: dirección errada" },
+	{
+		id: 10,
+		codigo: 504,
+		status: "Falso flete: No aplica a Entidad Institución",
+	},
+	{
+		id: 11,
+		codigo: 505,
+		status: "Falso flete: destinatario rechaza producto / documento",
+	},
+	{ id: 12, codigo: 506, status: "Falso flete: discrepancia con recepción" },
+	{ id: 13, codigo: 507, status: "Falso flete: documentos incompletos" },
+	{ id: 14, codigo: 508, status: "Falso flete: fuera de horario" },
+	{ id: 15, codigo: 509, status: "Falso flete: fuera de fecha" },
+	{ id: 16, codigo: 510, status: "Falso flete: importe no coincide con tasa" },
+	{ id: 17, codigo: 601, status: "Anulado: cliente declina" },
+	{
+		id: 18,
+		codigo: 602,
+		status: "Anulado: falta de disponibilidad de MoBikers",
+	},
+	{ id: 19, codigo: 700, status: "Devolución" },
 ];
 
 // Distritos
@@ -427,6 +462,10 @@ db.sequelize
 	.then(() => {
 		// Creando Tabla Entidades financieras
 		entidadesFinancieras.forEach((banco) => Bancos.create(banco));
+	})
+	.then(() => {
+		// Creando la tabla de status del Pedido
+		estadosPedido.forEach((status) => Status.create(status));
 	})
 	.then(() => {
 		// Creando usuarios

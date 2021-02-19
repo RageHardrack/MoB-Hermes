@@ -79,10 +79,6 @@ module.exports = (sequelize, Sequelize) => {
 				type: Sequelize.FLOAT(3),
 				allowNull: false,
 			},
-			status: {
-				type: Sequelize.INTEGER(1),
-				allowNull: false,
-			},
 			statusFinanciero: {
 				type: Sequelize.INTEGER(1),
 				allowNull: false,

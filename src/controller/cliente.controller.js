@@ -1,3 +1,4 @@
+const { rolCliente } = require("../models/index");
 const db = require("../models/index");
 const Cliente = db.cliente;
 const Distrito = db.distrito;
@@ -98,6 +99,107 @@ module.exports = {
 			res.json(clientes);
 		} catch (err) {
 			res.status(500).send({ message: err.message });
+		}
+	},
+
+	getClienteById: async (req, res) => {
+		try {
+			const id = req.params.id;
+
+			let dataCliente = await Cliente.findByPk(id, {
+				include: [
+					{
+						model: Distrito,
+					},
+					{
+						model: Comprobante,
+					},
+					{
+						model: RolCliente,
+					},
+					{
+						model: Carga,
+					},
+					{
+						model: FormaDePago,
+					},
+				],
+			});
+
+			if (!dataCliente) {
+				res.status(404).json({ msg: "No se ha encontrado el Cliente" });
+			} else {
+				res.json(dataCliente);
+			}
+		} catch (error) {
+			res.status(500).send({
+				message: "Error, no se encontró el cliente con el id = " + id,
+			});
+		}
+	},
+
+	updateCliente: async (req, res) => {
+		try {
+			const id = req.params.id;
+
+			let distrito = await Distrito.findOne({
+				where: {
+					distrito: req.body.distrito,
+				},
+			});
+
+			let comprobante = await Comprobante.findOne({
+				where: {
+					tipo: req.body.comprobante,
+				},
+			});
+
+			let rolDelCliente = await RolCliente.findOne({
+				where: {
+					rol: req.body.rol,
+				},
+			});
+
+			let tipoDeCarga = await Carga.findOne({
+				where: {
+					tipo: req.body.carga,
+				},
+			});
+
+			let pago = await FormaDePago.findOne({
+				where: {
+					pago: req.body.pago,
+				},
+			});
+
+			let cliente = {
+				contacto: req.body.contacto,
+				empresa: req.body.empresa,
+				direccion: req.body.direccion,
+				telefono: req.body.telefono,
+				otroDato: req.body.otroDato,
+				email: req.body.email,
+				ruc: req.body.ruc,
+				distritoId: distrito.id,
+				setTipoDeComprobanteId: comprobante.id,
+				rolClienteId: rolDelCliente.id,
+				tipoDeCargaId: tipoDeCarga.id,
+				formaDePagoId: pago.id,
+			};
+
+			let clienteActualizado = await Cliente.update(cliente, {
+				where: { id: id },
+			});
+
+			if (clienteActualizado) {
+				res.json({ message: "¡Se ha actualizado el Cliente con éxito!" });
+			} else {
+				res.json({
+					message: "¡Error! No se ha podido actualizar el cliente...",
+				});
+			}
+		} catch (error) {
+			res.status(500).send({ message: error.message });
 		}
 	},
 

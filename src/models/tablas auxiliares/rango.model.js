@@ -14,6 +14,7 @@ module.exports = (sequelize, Sequelize) => {
 		},
 		{
 			tableName: "rangos",
+			timestamps: false,
 		}
 	);
 	return Rango;

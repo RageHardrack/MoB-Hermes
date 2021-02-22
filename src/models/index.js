@@ -86,6 +86,9 @@ db.cliente.belongsTo(db.formaDePago);
 // Relaciones de MoBikers
 db.distrito.hasOne(db.mobiker);
 db.mobiker.belongsTo(db.distrito);
+
+db.rango.hasOne(db.mobiker);
+db.mobiker.belongsTo(db.rango);
 // Fin relaciones de MoBikers
 
 // Relaciones de Pedidos

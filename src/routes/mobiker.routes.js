@@ -16,7 +16,7 @@ module.exports = (app) => {
 	app.get("/mobikers/equipo-mobiker", controller.equipoMobiker);
 
 	// Ruta para mostrar UN MoBiker
-	app.get("/mobikers/equipo-mobiker/:id", controller.getMobiker);
+	app.get("/mobikers/equipo-mobiker/:id", controller.getMobikerById);
 
 	// Ruta para editar un MoBiker
 	app.put("/mobikers/equipo-mobiker/:id", controller.updateMobiker);

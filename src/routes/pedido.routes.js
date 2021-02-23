@@ -14,4 +14,13 @@ module.exports = (app) => {
 
 	// Ruta para mostrar todos los Pedidos
 	app.get("/pedidos/tablero-pedidos", controller.indexPedidos);
+
+	// Ruta para mostrar UN MoBiker
+	app.get("/pedidos/tablero-pedidos/:id", controller.getPedidoById);
+
+	// Ruta para editar un MoBiker
+	app.put("/pedidos/tablero-pedidos/:id", controller.updatePedido);
+
+	// Ruta para buscar mobikers por su nombre
+	app.get("/pedidos", controller.searchPedido);
 };

@@ -52,7 +52,7 @@ module.exports = {
 					res.status(500).send({ message: err.message });
 				}
 			} else {
-				res.json({ message: "¡Error! No se ha podido crear el mobike..." });
+				res.json({ message: "¡Error! No se ha podido crear el mobiker..." });
 			}
 		} catch (err) {
 			res.status(500).send({ message: err.message });
@@ -78,8 +78,8 @@ module.exports = {
 		}
 	},
 
-	// Mostrar 1 MoBiker
-	getMobiker: async (req, res) => {
+	// Mostrar 1 MoBiker por id
+	getMobikerById: async (req, res) => {
 		try {
 			const id = req.params.id;
 

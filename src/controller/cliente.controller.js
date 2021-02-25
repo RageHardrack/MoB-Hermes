@@ -181,7 +181,7 @@ module.exports = {
 				email: req.body.email,
 				ruc: req.body.ruc,
 				distritoId: distrito.id,
-				setTipoDeComprobanteId: comprobante.id,
+				tipoDeComprobanteId: comprobante.id,
 				rolClienteId: rolDelCliente.id,
 				tipoDeCargaId: tipoDeCarga.id,
 				formaDePagoId: pago.id,

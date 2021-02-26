@@ -244,8 +244,8 @@ module.exports = {
 				where: {
 					[Op.or]: [
 						{ id: { [Op.like]: `%${query}%` } },
-						{ contactoRemitente: { [Op.like]: `%${query}%` } },
-						{ empresaRemitente: { [Op.like]: `%${query}%` } },
+						{ contactoConsignado: { [Op.like]: `%${query}%` } },
+						{ empresaConsignado: { [Op.like]: `%${query}%` } },
 						{ contactoConsignado: { [Op.like]: `%${query}%` } },
 					],
 				},

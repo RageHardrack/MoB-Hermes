@@ -238,14 +238,14 @@ module.exports = {
 	// Buscar pedido por id, cliente, etc
 	searchPedido: async (req, res) => {
 		try {
-			const query = req.query.id;
+			const query = req.query.q;
 
 			let pedido = await Pedido.findAll({
 				where: {
 					[Op.or]: [
 						{ id: { [Op.like]: `%${query}%` } },
-						{ contactoConsignado: { [Op.like]: `%${query}%` } },
-						{ empresaConsignado: { [Op.like]: `%${query}%` } },
+						{ contactoRemitente: { [Op.like]: `%${query}%` } },
+						{ empresaRemitente: { [Op.like]: `%${query}%` } },
 						{ contactoConsignado: { [Op.like]: `%${query}%` } },
 					],
 				},

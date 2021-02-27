@@ -206,7 +206,7 @@ module.exports = {
 	// Buscar cliente por nombre o empresa
 	searchCliente: async (req, res) => {
 		try {
-			const query = req.query.contacto;
+			const query = req.query.q;
 
 			let cliente = await Cliente.findAll({
 				where: {

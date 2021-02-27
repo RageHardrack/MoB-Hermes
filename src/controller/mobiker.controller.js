@@ -155,7 +155,7 @@ module.exports = {
 
 	searchMobiker: async (req, res) => {
 		try {
-			const query = req.query.fullName;
+			const query = req.query.q;
 
 			let mobiker = await Mobiker.findAll({
 				where: {
